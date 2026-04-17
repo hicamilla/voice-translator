@@ -1,0 +1,89 @@
+:root {
+  --bg-color: #f0f2f5;
+  --border: #e5e7eb;
+  --txt-color: #111827;
+  --accent-color: #3B82F6;
+}
+
+/* ── Base reset ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: center;
+  background-color: var(--bg-color);
+  font-family: sans-serif;
+}
+
+/* ── Phone frame ── */
+.phone-frame {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  border-radius: 40px;
+  padding: 32px 16px;
+  border: 1px solid var(--border);
+}
+
+/* ── App content: stacks cards vertically ── */
+.app-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Title ── */
+h1 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--txt-color);
+  margin-bottom: 4px;
+}
+
+/* ── Shared card style ── */
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+}
+
+/* ── Language bar ── */
+.lang-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-bar select {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+  cursor: pointer;
+}
+
+/* ── Swap button ── */
+#swap-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #3B82F6;
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
