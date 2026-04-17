@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Voice Translator</title>
+</head>
+
+<body>
+  <div class="phone-frame">
+    <div class="app-content">
+      <h1>Voice Translator</h1>
+
+      <div class="lang-bar card">
+        <select id="source-lang">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="it">Italian</option>
+          <option value="pt">Portuguese</option>
+        </select>
+
+        <button id="swap-btn">⇄</button>
+
+        <select id="target-lang">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de" selected>German</option>
+          <option value="it">Italian</option>
+          <option value="pt">Portuguese</option>
+        </select>
+      </div>
+
+      <div class="input-card card">
+        <label for="input-text">Your text</label>
+        <textarea id="input-text" placeholder="Type or speak..."></textarea>
+      </div>
+
+      <div class="mic-section">
+        <button id="mic-btn">🎤</button>
+        <p id="status-text">Idle – tap mic to speak</p>
+      </div>
+
+      <div class="output-card card">
+        <label>Translation</label>
+        <div id="output-text">Your translation will appear here...</div>
+
+        <div class="output-actions">
+          <button id="translate-btn">Translate</button>
+          <button id="play-btn">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
