@@ -72,9 +72,20 @@ if (SpeechRecognition) {
     micBtn.style.backgroundColor = '#3b82f6';
   };
 
-  recognition.onerror = function () {
-    statusText.textContent = 'Microphone error. Try again.';
+  recognition.onerror = function (event) {
+    if (event.error === 'not-allowed') {
+      statusText.textContent = 'Microphone access denied. Please check your browser settings.';
+    } else if (event.error === 'no-speech') {
+      statusText.textContent = 'No speech detected. Try again.';
+    } else if (event.error === 'network') {
+      statusText.textContent = 'On Brave, disable "Block fingerprinting" in shields.';
+    } else {
+      statusText.textContent = 'Microphone error:' + event.error;
+    }
+
     micBtn.style.backgroundColor = '#3b82f6';
+    micBtn.classList.remove('listening');
+    isListening = false;
   };
 
   recognition.onend = function () {
@@ -85,6 +96,28 @@ if (SpeechRecognition) {
     micBtn.style.backgroundColor = '#3b82f6';
     micBtn.classList.remove('listening');
   };
+
+  if (navigator.permissions) {
+    navigator.permissions.query({ name: 'microphone' }).then(function (result) {
+      if (result.state === 'denied') {
+        statusText.textContent = 'Microphone blocked. Please enable it on browser settings.';
+        micBtn.style.opacity = '0.5';
+        micBtn.style.cursor = 'not-allowed';
+      }
+
+      result.onchange = function () {
+        if (result.stat === 'granted') {
+          statusText.textContent = 'Idle - tap mic to speak';
+          micBtn.style.opacity = '1';
+          micBtn.style.cursor = 'pointer';
+        } else if (result.state === 'denied') {
+          statusText.textContent = 'Microphone blocked. Please enable in the browser settings';
+          micBtn.style.opacity = '0.5';
+          micBtn.style.cursor = 'not-allowed';
+        }
+      };
+    });
+  }
 
   let isListening = false;
 
@@ -100,7 +133,7 @@ if (SpeechRecognition) {
   });
 } else {
   micBtn.addEventListener('click', function () {
-    statusText.textContent = 'Microphone not supported in this browser.';
+    statusText.textContent = 'Voice input not supported. Please type instead.';
   });
 }
 // ── Play button ──
@@ -124,3 +157,16 @@ playBtn.addEventListener('click', function () {
 
   window.speechSynthesis.speak(utterance);
 });
+
+// ── Register service worker ──
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js')
+      .then(function () {
+        console.log('Service worker registered.');
+      })
+      .catch(function (error) {
+        console.log('Service worker failed:', error);
+      });
+  });
+}

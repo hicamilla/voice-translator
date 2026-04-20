@@ -4,7 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Translator">
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
   <title>Voice Translator</title>
 </head>
 
@@ -15,23 +18,51 @@
 
       <div class="lang-bar card">
         <select id="source-lang">
-          <option value="en">English</option>
+          <option value="en" selected>English</option>
+          <option value="zh">Chinese (Mandarin)</option>
+          <option value="hi">Hindi</option>
           <option value="es">Spanish</option>
           <option value="fr">French</option>
-          <option value="de">German</option>
-          <option value="it">Italian</option>
+          <option value="ar">Arabic</option>
+          <option value="bn">Bengali</option>
           <option value="pt">Portuguese</option>
+          <option value="ru">Russian</option>
+          <option value="ja">Japanese</option>
+          <option value="de">German</option>
+          <option value="ko">Korean</option>
+          <option value="it">Italian</option>
+          <option value="tr">Turkish</option>
+          <option value="nl">Dutch</option>
+          <option value="pl">Polish</option>
+          <option value="sv">Swedish</option>
+          <option value="uk">Ukrainian</option>
+          <option value="vi">Vietnamese</option>
+          <option value="id">Indonesian</option>
         </select>
 
         <button id="swap-btn">⇄</button>
 
         <select id="target-lang">
           <option value="en">English</option>
+          <option value="zh">Chinese (Mandarin)</option>
+          <option value="hi">Hindi</option>
           <option value="es">Spanish</option>
           <option value="fr">French</option>
-          <option value="de" selected>German</option>
-          <option value="it">Italian</option>
+          <option value="ar">Arabic</option>
+          <option value="bn">Bengali</option>
           <option value="pt">Portuguese</option>
+          <option value="ru">Russian</option>
+          <option value="ja">Japanese</option>
+          <option value="de" selected>German</option>
+          <option value="ko">Korean</option>
+          <option value="it">Italian</option>
+          <option value="tr">Turkish</option>
+          <option value="nl">Dutch</option>
+          <option value="pl">Polish</option>
+          <option value="sv">Swedish</option>
+          <option value="uk">Ukrainian</option>
+          <option value="vi">Vietnamese</option>
+          <option value="id">Indonesian</option>
         </select>
       </div>
 
