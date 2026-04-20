@@ -135,12 +135,32 @@ h1 {
   font-size: 24px;
   cursor: pointer;
   box-shadow: 0 0 0 12px #bfdbfe;
+  margin-bottom: 12px;
 }
 
 #status-text {
   font-size: 12px;
   color: #9ca3af;
   letter-spacing: 0.02em;
+}
+
+/* ── Mic listening animation ── */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 12px #bfdbfe;
+  }
+
+  50% {
+    box-shadow: 0 0 0 20px #bfdbfe80;
+  }
+
+  100% {
+    box-shadow: 0 0 0 12px #bfdbfe;
+  }
+}
+
+#mic-btn.listening {
+  animation: pulse 1.2s ease-in-out infinite;
 }
 
 /* ── Output card ── */
@@ -166,6 +186,21 @@ h1 {
   font-size: 14px;
   color: #9ca3af;
   line-height: 1.5;
+  transition: opacity 0.3s ease;
+}
+
+#output-text.updated {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* ── Output actions row ── */
@@ -196,4 +231,21 @@ h1 {
   font-size: 16px;
   cursor: pointer;
   flex-shrink: 0;
+}
+
+/* ── Responsiveness ── */
+@media(max-width:480px) {
+  body {
+    align-items: flex-start;
+    padding: 24px 0;
+  }
+
+  .phone-frame {
+    border-radius: 24px;
+  }
+
+  .lang-bar select {
+    font-size: 15px;
+    padding: 10px 8px;
+  }
 }

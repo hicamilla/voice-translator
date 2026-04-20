@@ -36,7 +36,11 @@ try {
   const data = await response.json();
   const result = data.responseData.translatedText;
 
+  outputText.classList.remove('updated');
+  void outputText.offsetWidth;
   outputText.textContent = result;
+  outputText.style.color = '#111827';
+  outputText.classList.add('updated');
   statusText.textContent = 'Done.';
 } catch (error) {
   statusText.textContent = 'Something went wrong. Try again.'
@@ -58,6 +62,7 @@ if (SpeechRecognition) {
   recognition.onstart = function () {
     statusText.textContent = 'Listening...';
     micBtn.style.background = '#ef4444';
+    micBtn.classList.add('listening');
   };
 
   recognition.onresult = function (event) {
@@ -73,18 +78,49 @@ if (SpeechRecognition) {
   };
 
   recognition.onend = function () {
+    isListening = false;
     if (statusText.textContent === 'Listening...') {
       statusText.textContent = 'Idle - tap mic to speak';
     }
     micBtn.style.backgroundColor = '#3b82f6';
+    micBtn.classList.remove('listening');
   };
 
+  let isListening = false;
+
   micBtn.addEventListener('click', function () {
-    recognition.lang = sourceLang.value;
-    recognition.start();
+    if (isListening) {
+      recognition.stop();
+      isListening = false;
+    } else {
+      recognition.lang = sourceLang.value;
+      recognition.start();
+      isListening = true;
+    }
   });
-  
+} else {
   micBtn.addEventListener('click', function () {
     statusText.textContent = 'Microphone not supported in this browser.';
-  })
+  });
 }
+// ── Play button ──
+const playBtn = document.getElementById('play-btn');
+
+playBtn.addEventListener('click', function () {
+  const text = outputText.textContent;
+
+  if (!text || text === 'Your translation will appear here...') {
+    statusText.textContent = 'Nothing to play yet.';
+    return;
+  }
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = targetLang.value;
+
+  utterance.onstart = function () {
+    statusText.textContent = 'Done';
+    playBtn.disabled = false;
+  };
+
+  window.speechSynthesis.speak(utterance);
+});
