@@ -24,6 +24,11 @@ A mobile-friendly voice translation web app that lets you speak or type in one l
 4. Tap Translate to get your translation
 5. Tap the play button to hear the translated text out loud
 
+## Installing as an app
+- **iPhone**: Open in Safari, tap the Share button, then "Add to Home Screen"
+- **Android**: Open in Chrome, tap the menu, then "Add to Home Screen"
+- **Desktop**: Open in Chrome, click the install icon in the address bar
+
 ## Notes
 - Works best in Google Chrome
 - Microphone permission is required for voice input
