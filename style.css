@@ -245,7 +245,8 @@ h1 {
   }
 
   .lang-bar select {
-    font-size: 15px;
-    padding: 10px 8px;
+    font-size: 13px;
+    padding: 8px 4px;
+    min-width: 0;
   }
 }
